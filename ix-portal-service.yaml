@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ix-portal-service
+  namespace: default
+spec:
+  selector:
+    app: ixcloudapp
+  type: NodePort
+  ports:
+    - protocol: TCP
+      name: ix-web
+      port: 1337
+    - protocol: TCP
+      name: ix-admin
+      port: 8101

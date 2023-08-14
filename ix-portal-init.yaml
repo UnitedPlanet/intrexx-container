@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ix-portal-init
+  labels:
+    app: ixcloudapp
+  namespace: default
+spec:
+    restartPolicy: Never
+    containers:
+    - image: unitedplanet/intrexx:steady-latest
+      name: ixcloudapp
+      imagePullPolicy: IfNotPresent
+      args: ["echo", "done"]
+      volumeMounts:
+      - mountPath: /opt/intrexx/org
+        name: ixcloudapp-volume
+      env:
+        - name: DB_HOST
+          value: ix-db-postgresql.default.svc.cluster.local
+        - name: SOLR_HOST 
+          value: ix-solr-zookeeper.default.svc.cluster.local
+        - name: SOLR_PORT
+          value: "2181"
+        - name: SOLR_USER
+          value: admin
+        - name: SOLR_PASSWORD
+          value: U95nQoZHbW
+        - name: SOLR_SASL_DISABLED
+          value: "true"
+        - name: PORTAL_NAME
+          value: portal
+        - name: PORTAL_BASE_URL
+          value: http://localhost:1337/
+        - name: PORTAL_ZIP_NAME
+          value: portal-template.zip
+        - name: PORTAL_ZIP_MNTPT
+          value: /opt/intrexx/org
+        - name: DB_NAME
+          value: ixportal
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: .admin1
+        - name: IX_DISTRIBUTED
+          value: "false"
+        - name: IX_DISTRIBUTED_NODELIST
+          value: localhost
+        - name: TOMCAT_SEC_HEADER_XACCOUNTNAME
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XFORWARDEDFOR
+          value: allow
+        - name: TOMCAT_SEC_HEADER_FORWARDED
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XREALIP
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XFORWARDEDHOST
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XFORWARDEDPROTO
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XORIGINALURL
+          value: allow
+        - name: TOMCAT_SEC_HEADER_RECEIVEONNONLOOPBACKINTERFACE
+          value: allow
+    volumes:
+    - name: ixcloudapp-volume
+      persistentVolumeClaim:
+        claimName: ix-pvc

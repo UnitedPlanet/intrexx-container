@@ -1,0 +1,5 @@
+auth:
+  postgresPassword: '.admin1'
+primary:
+  persistence:
+    existingClaim: 'ix-db-pvc'

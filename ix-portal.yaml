@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ix-portal
+  labels:
+    app: ixcloudapp-manager
+  namespace: default
+spec:
+    restartPolicy: Always
+    containers:
+    - image: unitedplanet/intrexx:steady-latest
+      name: ixcloudapp
+      imagePullPolicy: IfNotPresent
+      command: ["/opt/intrexx/bin/linux/portal.sh"]
+      args: ["/opt/intrexx/org/portal"]
+      volumeMounts:
+      - mountPath: /opt/intrexx/org
+        name: ixcloudapp-volume
+      - mountPath: /opt/intrexx/cfg
+        name: ixcloudapp-volume-cfg
+      env:
+        - name: DB_HOST
+          value: ix-db-postgresql.default.svc.cluster.local
+        - name: SOLR_HOST 
+          value: ix-solr-zookeeper.default.svc.cluster.local
+        - name: SOLR_PORT
+          value: "2181"
+        - name: SOLR_USER
+          value: admin
+        - name: SOLR_PASSWORD
+          value: U95nQoZHbW
+        - name: SOLR_SASL_DISABLED
+          value: "true"
+        - name: PORTAL_NAME
+          value: portal
+        - name: PORTAL_BASE_URL
+          value: http://localhost:1337/
+        - name: PORTAL_ZIP_NAME
+          value: portal-template.zip
+        - name: PORTAL_ZIP_MNTPT
+          value: /opt/intrexx/org
+        - name: DB_NAME
+          value: ixportal
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: .admin1
+        - name: IX_DISTRIBUTED
+          value: "false"
+        - name: IX_DISTRIBUTED_NODELIST
+          value: localhost
+        - name: TOMCAT_SEC_HEADER_XACCOUNTNAME
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XFORWARDEDFOR
+          value: allow
+        - name: TOMCAT_SEC_HEADER_FORWARDED
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XREALIP
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XFORWARDEDHOST
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XFORWARDEDPROTO
+          value: allow
+        - name: TOMCAT_SEC_HEADER_XORIGINALURL
+          value: allow
+        - name: TOMCAT_SEC_HEADER_RECEIVEONNONLOOPBACKINTERFACE
+          value: allow
+    volumes:
+    - name: ixcloudapp-volume
+      persistentVolumeClaim:
+        claimName: ix-pvc

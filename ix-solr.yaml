@@ -1,0 +1,10 @@
+replicaCount: 1
+collectionShards: 1
+collectionReplicas: 1
+persistence:
+  existingClaim: 'ix-solr-pvc'
+  size: 512Mi
+zookeeper:
+  replicaCount: 1
+  persistence:
+    size: 128Mi
