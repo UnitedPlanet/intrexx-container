@@ -16,8 +16,6 @@ spec:
       volumeMounts:
       - mountPath: /opt/intrexx/org
         name: ixcloudapp-volume
-      - mountPath: /opt/intrexx/cfg
-        name: ixcloudapp-volume-cfg
       env:
         - name: DB_HOST
           value: ix-db-postgresql.default.svc.cluster.local
