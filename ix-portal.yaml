@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: ix-portal
   labels:
-    app: ixcloudapp-manager
+    app: ixcloudapp
   namespace: default
 spec:
     restartPolicy: Always
