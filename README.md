@@ -5,6 +5,8 @@ The namespace in the yaml-files has to be changed to the desired namespace.
 The deployment steps have to be executed in the given order.
 It is assumed that a default namespace is set and the yaml files are modified accordingly.
 
+If you want to change the namespace values of the helm charts you have to append ```--namespace yournamespace``` to every helm command listed below.
+
 ## Postgresql installation
 Required files: 
 1. ix-db-pvc.yaml
@@ -33,7 +35,7 @@ After this command, the output should be copied. The solr-password is specified 
 Required files:
 1. ix-portal-init.yaml
 2. ix-portal.yaml
-### Initialisation of the intrexx portal
+### Initialisation of the Intrexx portal
 The ix-portal-init.yaml file is used for this step.
 
 Necessary Modifications:
@@ -47,7 +49,7 @@ Commands
 
 The following command can be used to verify that the initialisation of the pod was executed correctly
 
-> kubectl logs -f ix-portal-init.yaml
+> kubectl logs -f ix-portal-init
 
 ### Runtime of the intrexx portal
 The ix-portal.yaml and ix-portal-service.yaml file is used for this step.
