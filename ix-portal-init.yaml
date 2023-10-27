@@ -61,7 +61,7 @@ spec:
         - name: TOMCAT_SEC_HEADER_XORIGINALURL
           value: allow
         - name: TOMCAT_SEC_HEADER_RECEIVEONNONLOOPBACKINTERFACE
-          value: allow
+          value: true
     volumes:
     - name: ixcloudapp-volume
       persistentVolumeClaim:
