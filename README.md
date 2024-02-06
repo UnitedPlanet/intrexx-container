@@ -69,7 +69,3 @@ Required files:
 
 Commands
 > kubectl apply -f ix-ingress.yaml
-
-## Last steps
-
-Currently, it is necessary to modify the solr URL via the Intrexx Portal Manager. Please start the Intrexx Portal Manager, connect to the portal and navigate to tools. There, you have to select Search -> Solr Search Server. In the field URL, the suffix /solr has to be added to the existing URL. In the "Task scheduler" submenu, the task "Tagging search engine maintenance" has to be executed.
