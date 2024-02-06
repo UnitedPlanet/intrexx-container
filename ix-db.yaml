@@ -1,5 +1,5 @@
 auth:
-  postgresPassword: '.admin1'
+  postgresPassword: 'mySafePassword'
 primary:
   persistence:
     existingClaim: 'ix-db-pvc'
