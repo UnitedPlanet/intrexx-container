@@ -25,7 +25,7 @@ spec:
         - name: SOLR_USER
           value: admin
         - name: SOLR_PASSWORD
-          value: U95nQoZHbW
+          value: mySecretPassword
         - name: SOLR_SASL_DISABLED
           value: "true"
         - name: SOLR_PATH
