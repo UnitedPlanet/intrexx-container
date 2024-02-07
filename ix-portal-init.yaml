@@ -43,7 +43,7 @@ spec:
         - name: DB_USER
           value: postgres
         - name: DB_PASSWORD
-          value: .admin1
+          value: mySecretPassword
         - name: IX_DISTRIBUTED
           value: "false"
         - name: IX_DISTRIBUTED_NODELIST
